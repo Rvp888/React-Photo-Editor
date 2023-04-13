@@ -66,6 +66,10 @@ body {
   background-color: hsl(265, 100%, 46%);
 }
 
+.sidebar-item:last-child::after {
+  display: none;
+}
+
 .slider-container {
   grid-area: slider;
   margin-top: 2rem;
