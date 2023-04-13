@@ -45,6 +45,15 @@ body {
   background-color: hsl(265, 100%, 86%);
   padding: 1rem;
   position: relative;
+  transition: background-color 150ms;
+}
+
+.sidebar-item:hover, .sidebar-item:focus {
+  background-color: hsl(265, 100%, 76%);
+}
+
+.sidebar-item.active {
+  background-color: hsl(265, 100%, 46%);
 }
 
 .slider-container {
