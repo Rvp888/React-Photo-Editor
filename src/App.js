@@ -80,7 +80,9 @@ const DEFAULT_OPTIONS = [
 
 function App() {
 
+  const [ selectedOptionIndex, setSelectedOptionIndex ] = useState(0);
   const [ options, setOptions ] = useState(DEFAULT_OPTIONS);
+  const selectedOption = options[selectedOptionIndex];
 
 
   return (
@@ -92,6 +94,7 @@ function App() {
             <SidebarItem
               key={index}
               name={option.name}
+              active={index === selectedOptionIndex}
             />
           )
         })}
