@@ -84,6 +84,20 @@ function App() {
   const [ options, setOptions ] = useState(DEFAULT_OPTIONS);
   const selectedOption = options[selectedOptionIndex];
 
+  function handleSliderChange(e) {
+    setOptions(prevOptions => {
+      return prevOptions.map((option, index) => {
+        if (index !== selectedOptionIndex) {
+          return option;
+        }
+        return {
+          ...option,
+          value: e.target.value
+        }
+      })
+    })
+  }
+
 
   return (
     <div className="container">
