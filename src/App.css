@@ -53,6 +53,16 @@ body {
 }
 
 .sidebar-item.active {
+  background-color: hsl(265, 100%, 70%);
+}
+
+.sidebar-item::after {
+  content: '';
+  position: absolute;
+  width: 80%;
+  left: 10%;
+  bottom: 0;
+  height: 1px;
   background-color: hsl(265, 100%, 46%);
 }
 
