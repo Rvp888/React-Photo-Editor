@@ -100,7 +100,12 @@ function App() {
           )
         })}
       </div>
-      <Slider />
+      <Slider 
+        min={selectedOption.range.min}
+        max={selectedOption.range.max}
+        value={selectedOption.value}
+        handleChange={handleSliderChange}
+      />
     </div>
   );
 }
