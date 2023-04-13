@@ -28,7 +28,7 @@ const DEFAULT_OPTIONS = [
   },
   {
     name: "Saturation",
-    property: 'saturation',
+    property: 'saturate',
     value: 100,
     range: {
       min: 0,
