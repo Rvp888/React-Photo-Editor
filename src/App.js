@@ -4,6 +4,8 @@ import SidebarItem from "./components/SidebarItem";
 import Slider from "./components/Slider";
 import { toPng } from "html-to-image";
 import download from "downloadjs";
+import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
+import { storage } from "./firebaseConfig";
 
 const DEFAULT_OPTIONS = [
   {
@@ -83,6 +85,7 @@ function App() {
   const [options, setOptions] = useState(DEFAULT_OPTIONS);
   const selectedOption = options[selectedOptionIndex];
   const [showModal, setShowModal] = useState(false);
+  const [imageURL, setImageURL] = useState("");
 
   function handleSliderChange(e) {
     setOptions((prevOptions) => {
@@ -103,7 +106,7 @@ function App() {
       return `${option.property}(${option.value}${option.unit})`;
     });
 
-    return { filter: filters.join(" ") };
+    return { filter: filters.join(" "), backgroundImage: `url(${imageURL})` };
   }
 
   const node = document.querySelector(".main-image");
@@ -116,6 +119,20 @@ function App() {
     })
   }
 
+  function handleUpload(e) {
+    let file = e.target.files[0];
+    const imageRef = ref(storage, file.name);
+    const uploadTask = uploadBytesResumable(imageRef, file);
+    uploadTask.on('state_changed', async() => {
+      await getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+        console.log("File available at", downloadURL);
+        setImageURL(downloadURL);
+      })
+    })
+  }
+
+
+
   return (
     <div className="container">
       <div className="main-image" style={getImageStyle()} />
@@ -123,7 +140,7 @@ function App() {
         <button className="actions-upload-btn" onClick={() => setShowModal(true)} >Upload image</button>
         <button className="actions-download-btn" onClick={downloadImage} >Download image</button>
         {showModal && <div>
-          <input type="file" onChange={handleChange} />
+          <input type="file" onChange={handleUpload} style={{backgroundImage: URLSearchParams}} />
         </div>}
       </div>
       <div className="sidebar">
