@@ -46,10 +46,15 @@
 
 .actions {
   grid-area: actions;
+  display: flex;
+  flex-direction: column;
 }
 
-button {
+.actions-btn {
   cursor: pointer;
+  font-size: 15px;
+  padding: 10px;
+  border-radius: 5px;
 }
 
 .edit-box {
@@ -62,6 +67,7 @@ button {
   cursor: pointer;
   border: none;
   outline: none;
+  border-radius: 0px;
   background-color: hsl(265, 100%, 86%);
   padding: 1rem;
   position: relative;

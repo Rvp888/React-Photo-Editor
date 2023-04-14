@@ -139,43 +139,40 @@ function App() {
 
   return (
     <div className="App">
-      <h1 className="app-title" >Photo-Editor</h1>
+      <h1 className="app-title">Photo-Editor</h1>
       <div className="container">
         <div className="main-image" style={getImageStyle()} />
         <div className="actions">
           <button
-            className="actions-upload-btn"
+            className="actions-btn actions-upload-btn"
             onClick={() => setShowModal(true)}
           >
             Upload image
           </button>
-          <button className="actions-download-btn" onClick={downloadImage}>
+          <button className="actions-btn actions-download-btn" onClick={downloadImage}>
             Download image
           </button>
           {showModal && (
             <div>
-              <input
-                type="file"
-                onChange={handleUpload}
-              />
+              <input type="file" onChange={handleUpload} />
             </div>
           )}
-          <button onClick={() => setShowEdit(showEdit ? false : true)}>
+          <button className="actions-btn actions-edit-btn" onClick={() => setShowEdit(showEdit ? false : true)}>
             Edit image
           </button>
           <div className="edit-box">
-          {options.map((option, index) => {
-            return (
-              <SidebarItem
-                key={index}
-                name={option.name}
-                active={index === selectedOptionIndex}
-                handleClick={() => setSelectedOptionIndex(index)}
-                showEdit={showEdit}
-              />
-            );
-          })}
-        </div>
+            {options.map((option, index) => {
+              return (
+                <SidebarItem
+                  key={index}
+                  name={option.name}
+                  active={index === selectedOptionIndex}
+                  handleClick={() => setSelectedOptionIndex(index)}
+                  showEdit={showEdit}
+                />
+              );
+            })}
+          </div>
         </div>
         <Slider
           min={selectedOption.range.min}
