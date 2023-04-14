@@ -114,8 +114,8 @@ function App() {
   function downloadImage() {
     toPng(node).then(dataUrl => {
       download(dataUrl, "Custom-image.png");
-    }).catch(() => {
-      console.log("Error");
+    }).catch((err) => {
+      console.log(err.message);
     })
   }
 
