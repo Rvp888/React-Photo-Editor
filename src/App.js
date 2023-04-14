@@ -86,7 +86,9 @@ function App() {
   const selectedOption = options[selectedOptionIndex];
   const [showModal, setShowModal] = useState(false);
   const [showEdit, setShowEdit] = useState(false);
-  const [imageURL, setImageURL] = useState("https://media.istockphoto.com/id/1363905781/photo/fireweed-in-anchorage-alaska.jpg?b=1&s=170667a&w=0&k=20&c=wGddCuHzJCtQPo5Kk-qzhj-_Gq34lUo3hfJvvOhCGwM=");
+  const [imageURL, setImageURL] = useState(
+    "https://media.istockphoto.com/id/1363905781/photo/fireweed-in-anchorage-alaska.jpg?b=1&s=170667a&w=0&k=20&c=wGddCuHzJCtQPo5Kk-qzhj-_Gq34lUo3hfJvvOhCGwM="
+  );
 
   function handleSliderChange(e) {
     setOptions((prevOptions) => {
@@ -113,59 +115,77 @@ function App() {
   const node = document.querySelector(".main-image");
 
   function downloadImage() {
-    toPng(node).then(dataUrl => {
-      download(dataUrl, "Custom-image.png");
-    }).catch((err) => {
-      console.log(err);
-    })
+    toPng(node)
+      .then((dataUrl) => {
+        download(dataUrl, "Custom-image.png");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
 
   function handleUpload(e) {
     let file = e.target.files[0];
     const imageRef = ref(storage, file.name);
     const uploadTask = uploadBytesResumable(imageRef, file);
-    uploadTask.on('state_changed', async() => {
-      console.log("inside async function")
+    uploadTask.on("state_changed", async () => {
+      console.log("inside async function");
       const downloadURL = await getDownloadURL(uploadTask.snapshot.ref);
       console.log("File available at", downloadURL);
       setImageURL(downloadURL);
       setShowModal(false);
-    })
+    });
   }
 
-
-
   return (
-    <div className="container">
-      <div className="main-image" style={getImageStyle()} />
-      <div className="actions">
-        <button className="actions-upload-btn" onClick={() => setShowModal(true)} >Upload image</button>
-        <button className="actions-download-btn" onClick={downloadImage} >Download image</button>
-        {showModal && <div>
-          <input type="file" onChange={handleUpload} style={{backgroundImage: URLSearchParams}} />
-        </div>}
+    <>
+      <h1 className="app-title" >Photo-Editor</h1>
+      <div className="container">
+        <div className="main-image" style={getImageStyle()} />
+        <div className="actions">
+          <button
+            className="actions-upload-btn"
+            onClick={() => setShowModal(true)}
+          >
+            Upload image
+          </button>
+          <button className="actions-download-btn" onClick={downloadImage}>
+            Download image
+          </button>
+          {showModal && (
+            <div>
+              <input
+                type="file"
+                onChange={handleUpload}
+                style={{ backgroundImage: URLSearchParams }}
+              />
+            </div>
+          )}
+        </div>
+        <div className="sidebar">
+          <button onClick={() => setShowEdit(showEdit ? false : true)}>
+            Edit image
+          </button>
+          {options.map((option, index) => {
+            return (
+              <SidebarItem
+                key={index}
+                name={option.name}
+                active={index === selectedOptionIndex}
+                handleClick={() => setSelectedOptionIndex(index)}
+                showEdit={showEdit}
+              />
+            );
+          })}
+        </div>
+        <Slider
+          min={selectedOption.range.min}
+          max={selectedOption.range.max}
+          value={selectedOption.value}
+          handleChange={handleSliderChange}
+        />
       </div>
-      <div className="sidebar">
-        <button onClick={() => setShowEdit(showEdit ? false : true)} >Edit image</button>
-        {options.map((option, index) => {
-          return (
-            <SidebarItem
-              key={index}
-              name={option.name}
-              active={index === selectedOptionIndex}
-              handleClick={() => setSelectedOptionIndex(index)}
-              showEdit={showEdit}
-            />
-          );
-        })}
-      </div>
-      <Slider
-        min={selectedOption.range.min}
-        max={selectedOption.range.max}
-        value={selectedOption.value}
-        handleChange={handleSliderChange}
-      />
-    </div>
+    </>
   );
 }
 
