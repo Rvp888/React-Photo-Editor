@@ -138,7 +138,7 @@ function App() {
   }
 
   return (
-    <>
+    <div className="App">
       <h1 className="app-title" >Photo-Editor</h1>
       <div className="container">
         <div className="main-image" style={getImageStyle()} />
@@ -185,7 +185,7 @@ function App() {
           handleChange={handleSliderChange}
         />
       </div>
-    </>
+    </div>
   );
 }
 

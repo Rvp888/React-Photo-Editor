@@ -1,15 +1,29 @@
 
 *, *::before, *::after {
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
-body {
-  margin: 0;
+.App {
+  width: 100vw;
+  height: 100vh;
+}
+
+.app-title {
+  width: 100%;
+  background-color: rgb(42, 48, 53);
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
 }
 
 .container {
-  height: 100vh;
-  width: 100vw;
+  height: 92%;
+  width: 100%;
   padding: 20px;
   background-color: #DADADA;
   display: grid;
@@ -40,7 +54,6 @@ button {
 
 .sidebar {
   grid-area: sidebar;
-  /* height: 100px; */
   /* background-color: hsl(265, 100%, 86%); */
   /* border-left: 1px solid hsl(265, 100%, 56%); */
   display: flex;
