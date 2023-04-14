@@ -124,11 +124,10 @@ function App() {
     const imageRef = ref(storage, file.name);
     const uploadTask = uploadBytesResumable(imageRef, file);
     uploadTask.on('state_changed', async() => {
-      await getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+      const downloadURL = await getDownloadURL(uploadTask.snapshot.ref);
         console.log("File available at", downloadURL);
         setImageURL(downloadURL);
         setShowModal(false);
-      })
     })
   }
 
