@@ -85,6 +85,7 @@ function App() {
   const [options, setOptions] = useState(DEFAULT_OPTIONS);
   const selectedOption = options[selectedOptionIndex];
   const [showModal, setShowModal] = useState(false);
+  const [showEdit, setShowEdit] = useState(false);
   const [imageURL, setImageURL] = useState("https://media.istockphoto.com/id/1363905781/photo/fireweed-in-anchorage-alaska.jpg?b=1&s=170667a&w=0&k=20&c=wGddCuHzJCtQPo5Kk-qzhj-_Gq34lUo3hfJvvOhCGwM=");
 
   function handleSliderChange(e) {
@@ -115,7 +116,7 @@ function App() {
     toPng(node).then(dataUrl => {
       download(dataUrl, "Custom-image.png");
     }).catch((err) => {
-      console.log(err.message);
+      console.log(err);
     })
   }
 
@@ -124,10 +125,11 @@ function App() {
     const imageRef = ref(storage, file.name);
     const uploadTask = uploadBytesResumable(imageRef, file);
     uploadTask.on('state_changed', async() => {
+      console.log("inside async function")
       const downloadURL = await getDownloadURL(uploadTask.snapshot.ref);
-        console.log("File available at", downloadURL);
-        setImageURL(downloadURL);
-        setShowModal(false);
+      console.log("File available at", downloadURL);
+      setImageURL(downloadURL);
+      setShowModal(false);
     })
   }
 
@@ -144,6 +146,7 @@ function App() {
         </div>}
       </div>
       <div className="sidebar">
+        <button onClick={() => setShowEdit(showEdit ? false : true)} >Edit image</button>
         {options.map((option, index) => {
           return (
             <SidebarItem
@@ -151,6 +154,7 @@ function App() {
               name={option.name}
               active={index === selectedOptionIndex}
               handleClick={() => setSelectedOptionIndex(index)}
+              showEdit={showEdit}
             />
           );
         })}

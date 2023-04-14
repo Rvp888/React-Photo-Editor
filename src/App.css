@@ -10,13 +10,14 @@ body {
 .container {
   height: 100vh;
   width: 100vw;
+  padding: 20px;
   background-color: #DADADA;
   display: grid;
   grid-template-columns: 1fr auto auto;
   grid-template-rows: 1fr auto;
   grid-template-areas: 
     "image actions sidebar"
-    "slider slider sidebar";
+    "slider auto auto";
 }
 
 .main-image {
@@ -33,14 +34,15 @@ body {
   grid-area: actions;
 }
 
-.actions button {
+button {
   cursor: pointer;
 }
 
 .sidebar {
   grid-area: sidebar;
-  background-color: hsl(265, 100%, 86%);
-  border-left: 1px solid hsl(265, 100%, 56%);
+  /* height: 100px; */
+  /* background-color: hsl(265, 100%, 86%); */
+  /* border-left: 1px solid hsl(265, 100%, 56%); */
   display: flex;
   flex-direction: column;
   align-items: stretch;
