@@ -157,7 +157,6 @@ function App() {
               <input
                 type="file"
                 onChange={handleUpload}
-                style={{ backgroundImage: URLSearchParams }}
               />
             </div>
           )}
