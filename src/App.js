@@ -82,6 +82,7 @@ function App() {
   const [selectedOptionIndex, setSelectedOptionIndex] = useState(0);
   const [options, setOptions] = useState(DEFAULT_OPTIONS);
   const selectedOption = options[selectedOptionIndex];
+  const [showModal, setShowModal] = useState(false);
 
   function handleSliderChange(e) {
     setOptions((prevOptions) => {
@@ -119,8 +120,11 @@ function App() {
     <div className="container">
       <div className="main-image" style={getImageStyle()} />
       <div className="actions">
-        <button className="actions-upload-btn">Upload image</button>
+        <button className="actions-upload-btn" onClick={() => setShowModal(true)} >Upload image</button>
         <button className="actions-download-btn" onClick={downloadImage} >Download image</button>
+        {showModal && <div>
+          <input type="file" onChange={handleChange} />
+        </div>}
       </div>
       <div className="sidebar">
         {options.map((option, index) => {
