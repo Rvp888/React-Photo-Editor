@@ -105,12 +105,22 @@ function App() {
     return { filter: filters.join(" ") };
   }
 
+  const node = document.querySelector(".main-image");
+
+  function downloadImage() {
+    toPng(node).then(dataUrl => {
+      download(dataUrl, "Custom-image.png");
+    }).catch(() => {
+      console.log("Error");
+    })
+  }
+
   return (
     <div className="container">
       <div className="main-image" style={getImageStyle()} />
       <div className="actions">
-        <button>Upload image</button>
-        <button>Download image</button>
+        <button className="actions-upload-btn">Upload image</button>
+        <button className="actions-download-btn" onClick={downloadImage} >Download image</button>
       </div>
       <div className="sidebar">
         {options.map((option, index) => {
