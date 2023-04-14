@@ -160,11 +160,10 @@ function App() {
               />
             </div>
           )}
-        </div>
-        <div className="sidebar">
           <button onClick={() => setShowEdit(showEdit ? false : true)}>
             Edit image
           </button>
+          <div className="edit-box">
           {options.map((option, index) => {
             return (
               <SidebarItem
@@ -176,6 +175,7 @@ function App() {
               />
             );
           })}
+        </div>
         </div>
         <Slider
           min={selectedOption.range.min}

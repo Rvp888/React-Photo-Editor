@@ -30,8 +30,8 @@
   grid-template-columns: 1fr auto auto;
   grid-template-rows: 1fr auto;
   grid-template-areas: 
-    "image actions sidebar"
-    "slider auto auto";
+    "image actions"
+    "slider auto";
 }
 
 .main-image {
@@ -52,13 +52,10 @@ button {
   cursor: pointer;
 }
 
-.sidebar {
-  grid-area: sidebar;
-  /* background-color: hsl(265, 100%, 86%); */
-  /* border-left: 1px solid hsl(265, 100%, 56%); */
+.edit-box {
   display: flex;
   flex-direction: column;
-  align-items: stretch;
+  /* align-items: stretch; */
 }
 
 .sidebar-item {
