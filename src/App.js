@@ -85,7 +85,7 @@ function App() {
   const [options, setOptions] = useState(DEFAULT_OPTIONS);
   const selectedOption = options[selectedOptionIndex];
   const [showModal, setShowModal] = useState(false);
-  const [imageURL, setImageURL] = useState("");
+  const [imageURL, setImageURL] = useState("https://media.istockphoto.com/id/1363905781/photo/fireweed-in-anchorage-alaska.jpg?b=1&s=170667a&w=0&k=20&c=wGddCuHzJCtQPo5Kk-qzhj-_Gq34lUo3hfJvvOhCGwM=");
 
   function handleSliderChange(e) {
     setOptions((prevOptions) => {
@@ -127,6 +127,7 @@ function App() {
       await getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
         console.log("File available at", downloadURL);
         setImageURL(downloadURL);
+        setShowModal(false);
       })
     })
   }
