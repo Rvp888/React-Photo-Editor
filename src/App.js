@@ -85,13 +85,14 @@ const DEFAULT_OPTIONS = [
 ];
 
 function App() {
-  const [selectedOptionIndex, setSelectedOptionIndex] = useState(0);
-  const [options, setOptions] = useState(DEFAULT_OPTIONS);
+  const [ selectedOptionIndex, setSelectedOptionIndex ] = useState(0);
+  const [ options, setOptions ] = useState(DEFAULT_OPTIONS);
   const selectedOption = options[selectedOptionIndex];
-  const [showEdit, setShowEdit] = useState(false);
-  const [imageURL, setImageURL] = useState(
+  const [ showEdit, setShowEdit ] = useState(false);
+  const [ imageURL, setImageURL ] = useState(
     "https://media.istockphoto.com/id/1363905781/photo/fireweed-in-anchorage-alaska.jpg?b=1&s=170667a&w=0&k=20&c=wGddCuHzJCtQPo5Kk-qzhj-_Gq34lUo3hfJvvOhCGwM="
   );
+  const [ showTextBox, setShowTextBox ] = useState(false);
 
 
   function handleSliderChange(e) {
