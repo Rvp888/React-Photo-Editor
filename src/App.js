@@ -150,8 +150,8 @@ function App() {
     <div className="App">
       <h1 className="app-title">Photo-Editor</h1>
       <div className="container">
-        <div className="main-image" style={getImageStyle()} onClick={() => setShowTextBox(false)} >
-          {showTextBox ? <input type="text" className="image-text" onChange={(e) => setText(e.target.value)} /> : <p>{text}</p>}
+        <div className="main-image" style={getImageStyle()} >
+          {showTextBox ? <input type="text" className="image-text-input" onChange={(e) => setText(e.target.value)} onBlur={() => setShowTextBox(false)} /> : <p className="image-text">{text}</p>}
         </div>
         <div className="actions">         
           <div>

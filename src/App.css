@@ -47,7 +47,7 @@
   position: relative;
 }
 
-.image-text {
+.image-text-input {
   position: absolute;
   top: 5%;
   left: 45%;
@@ -55,6 +55,14 @@
   font-size: 18px;
   padding: 5px 10px;
   /* border: none; */
+}
+
+.image-text {
+  position: absolute;
+  top: 5%;
+  left: 45%;
+  font-size: 18px;
+  padding: 5px 10px;
 }
 
 .actions {
