@@ -54,6 +54,8 @@
   cursor: pointer;
   font-size: 15px;
   padding: 10px;
+  background: white;
+  border: 1px solid #999;
   border-radius: 5px;
   margin-bottom: 5px;
 }
@@ -61,6 +63,7 @@
 .file-input {
   margin-bottom: 5px;
   color: transparent;
+  width: 150px;
 }
 
 .file-input::-webkit-file-upload-button {
@@ -73,21 +76,16 @@
   display: inline-block;
   background: white;
   border: 1px solid #999;
-  border-radius: 3px;
-  padding: 5px 8px;
+  font-size: 15px;
+  padding: 10px 24px;
+  border-radius: 5px;
   outline: none;
-  white-space: nowrap;
-  -webkit-user-select: none;
   cursor: pointer;
-  /* text-shadow: 1px 1px #fff;
-  font-weight: 700;
-  font-size: 10pt; */
 }
 
 .edit-box {
   display: flex;
   flex-direction: column;
-  /* align-items: stretch; */
 }
 
 .sidebar-item {

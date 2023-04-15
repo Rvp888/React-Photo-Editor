@@ -84,7 +84,6 @@ function App() {
   const [selectedOptionIndex, setSelectedOptionIndex] = useState(0);
   const [options, setOptions] = useState(DEFAULT_OPTIONS);
   const selectedOption = options[selectedOptionIndex];
-  const [showModal, setShowModal] = useState(false);
   const [showEdit, setShowEdit] = useState(false);
   const [imageURL, setImageURL] = useState(
     "https://media.istockphoto.com/id/1363905781/photo/fireweed-in-anchorage-alaska.jpg?b=1&s=170667a&w=0&k=20&c=wGddCuHzJCtQPo5Kk-qzhj-_Gq34lUo3hfJvvOhCGwM="
@@ -133,7 +132,6 @@ function App() {
       const downloadURL = await getDownloadURL(uploadTask.snapshot.ref);
       console.log("File available at", downloadURL);
       setImageURL(downloadURL);
-      setShowModal(false);
     });
   }
 
@@ -142,18 +140,10 @@ function App() {
       <h1 className="app-title">Photo-Editor</h1>
       <div className="container">
         <div className="main-image" style={getImageStyle()} />
-        <div className="actions">
-          <button
-            className="actions-btn actions-upload-btn"
-            onClick={() => setShowModal(true)}
-          >
-            Upload image
-          </button>          
-          {showModal && (
-            <div>
-              <input type="file" className="file-input" onChange={handleUpload} />
-            </div>
-          )}
+        <div className="actions">         
+          <div>
+            <input type="file" className="file-input" onChange={handleUpload} />
+          </div>
           <button className="actions-btn actions-download-btn" onClick={downloadImage}>
             Download image
           </button>
