@@ -148,15 +148,15 @@ function App() {
             onClick={() => setShowModal(true)}
           >
             Upload image
-          </button>
+          </button>          
+          {showModal && (
+            <div>
+              <input type="file" className="file-input" onChange={handleUpload} />
+            </div>
+          )}
           <button className="actions-btn actions-download-btn" onClick={downloadImage}>
             Download image
           </button>
-          {showModal && (
-            <div>
-              <input type="file" onChange={handleUpload} />
-            </div>
-          )}
           <button className="actions-btn actions-edit-btn" onClick={() => setShowEdit(showEdit ? false : true)}>
             Edit image
           </button>

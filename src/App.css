@@ -55,6 +55,11 @@
   font-size: 15px;
   padding: 10px;
   border-radius: 5px;
+  margin-bottom: 5px;
+}
+
+.file-input {
+  margin-bottom: 10px;
 }
 
 .edit-box {
