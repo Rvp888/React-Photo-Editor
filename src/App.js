@@ -127,7 +127,7 @@ function App() {
       });
   }
 
-  
+
   function handleUpload(e) {
     const { files } = e.target;
     if (files && files.length > 0) {
@@ -145,7 +145,9 @@ function App() {
     <div className="App">
       <h1 className="app-title">Photo-Editor</h1>
       <div className="container">
-        <div className="main-image" style={getImageStyle()} />
+        <div className="main-image" style={getImageStyle()}>
+          <input type="text" className="image-text" />
+        </div>
         <div className="actions">         
           <div>
             <input type="file" className="file-input" onChange={handleUpload} />

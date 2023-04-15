@@ -1,6 +1,5 @@
 
-@import 'react-image-crop/dist/ReactCrop.css';
-/* @import 'react-image-crop/src/ReactCrop.scss'; */
+
 
 *, *::before, *::after {
   box-sizing: border-box;
@@ -45,6 +44,16 @@
   background-position: top center;
   background-size: contain;
   background-repeat: no-repeat;
+  position: relative;
+}
+
+.image-text {
+  position: absolute;
+  top: 5%;
+  left: 45%;
+  background-color: transparent;
+  font-size: 18px;
+  padding: 5px 10px;
 }
 
 .actions {
