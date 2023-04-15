@@ -7,6 +7,7 @@ import download from "downloadjs";
 import ReactCrop from "react-image-crop";
 
 
+
 const DEFAULT_OPTIONS = [
   {
     name: "Brightness",
@@ -88,8 +89,7 @@ function App() {
   const [imageURL, setImageURL] = useState(
     "https://media.istockphoto.com/id/1363905781/photo/fireweed-in-anchorage-alaska.jpg?b=1&s=170667a&w=0&k=20&c=wGddCuHzJCtQPo5Kk-qzhj-_Gq34lUo3hfJvvOhCGwM="
   );
-  const [crop, setCrop] = useState({ aspect: 9/16 });
-  const [completedCrop, setCompletedCrop] = useState(null);
+
 
   function handleSliderChange(e) {
     setOptions((prevOptions) => {
@@ -105,13 +105,15 @@ function App() {
     });
   }
 
+
   function getImageStyle() {
     const filters = options.map((option) => {
       return `${option.property}(${option.value}${option.unit})`;
     });
 
-    return { filter: filters.join(" "),  };
+    return { filter: filters.join(" "), backgroundImage: `url(${imageURL})` };
   }
+
 
   const node = document.querySelector(".main-image");
 
@@ -125,17 +127,8 @@ function App() {
       });
   }
 
+  
   function handleUpload(e) {
-    // let file = e.target.files[0];
-    // const imageRef = ref(storage, file.name);
-    // const uploadTask = uploadBytesResumable(imageRef, file);
-    // uploadTask.on("state_changed", async () => {
-    //   console.log("inside async function");
-    //   const downloadURL = await getDownloadURL(uploadTask.snapshot.ref);
-    //   console.log("File available at", downloadURL);
-    //   setImageURL(downloadURL);
-    // });
-
     const { files } = e.target;
     if (files && files.length > 0) {
       const reader = new FileReader();
@@ -146,15 +139,13 @@ function App() {
     }
   }
 
+ 
+
   return (
     <div className="App">
       <h1 className="app-title">Photo-Editor</h1>
       <div className="container">
-        <div className="main-image" style={getImageStyle()}>
-          <ReactCrop crop={crop} onChange={(c) => setCrop(c)} onComplete={(c) => setCompletedCrop(c)} >
-            <img src={imageURL} />
-          </ReactCrop>
-        </div>
+        <div className="main-image" style={getImageStyle()} />
         <div className="actions">         
           <div>
             <input type="file" className="file-input" onChange={handleUpload} />
