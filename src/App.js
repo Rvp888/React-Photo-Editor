@@ -79,6 +79,9 @@ const DEFAULT_OPTIONS = [
     },
     unit: "px",
   },
+  {
+    name: "Add text",
+  }
 ];
 
 function App() {
@@ -165,7 +168,7 @@ function App() {
                   key={index}
                   name={option.name}
                   active={index === selectedOptionIndex}
-                  handleClick={() => setSelectedOptionIndex(index)}
+                  handleOptionIndex={() => setSelectedOptionIndex(index)}
                   showEdit={showEdit}
                 />
               );
@@ -173,8 +176,8 @@ function App() {
           </div>
         </div>
         <Slider
-          min={selectedOption.range.min}
-          max={selectedOption.range.max}
+          min={selectedOption.range?.min}
+          max={selectedOption.range?.max}
           value={selectedOption.value}
           handleChange={handleSliderChange}
         />
