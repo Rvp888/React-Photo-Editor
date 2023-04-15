@@ -124,15 +124,24 @@ function App() {
   }
 
   function handleUpload(e) {
-    let file = e.target.files[0];
-    const imageRef = ref(storage, file.name);
-    const uploadTask = uploadBytesResumable(imageRef, file);
-    uploadTask.on("state_changed", async () => {
-      console.log("inside async function");
-      const downloadURL = await getDownloadURL(uploadTask.snapshot.ref);
-      console.log("File available at", downloadURL);
-      setImageURL(downloadURL);
-    });
+    // let file = e.target.files[0];
+    // const imageRef = ref(storage, file.name);
+    // const uploadTask = uploadBytesResumable(imageRef, file);
+    // uploadTask.on("state_changed", async () => {
+    //   console.log("inside async function");
+    //   const downloadURL = await getDownloadURL(uploadTask.snapshot.ref);
+    //   console.log("File available at", downloadURL);
+    //   setImageURL(downloadURL);
+    // });
+
+    const { files } = e.target;
+    if (files && files.length > 0) {
+      const reader = new FileReader();
+      reader.readAsDataURL(files[0]);
+      reader.addEventListener("load", () => {
+        setImageURL(reader.result);
+      });
+    }
   }
 
   return (
