@@ -93,6 +93,7 @@ function App() {
     "https://media.istockphoto.com/id/1363905781/photo/fireweed-in-anchorage-alaska.jpg?b=1&s=170667a&w=0&k=20&c=wGddCuHzJCtQPo5Kk-qzhj-_Gq34lUo3hfJvvOhCGwM="
   );
   const [ showTextBox, setShowTextBox ] = useState(false);
+  const [ text, setText ] = useState("");
 
 
   function handleSliderChange(e) {
@@ -149,8 +150,8 @@ function App() {
     <div className="App">
       <h1 className="app-title">Photo-Editor</h1>
       <div className="container">
-        <div className="main-image" style={getImageStyle()}>
-          <input type="text" className="image-text" />
+        <div className="main-image" style={getImageStyle()} onClick={() => setShowTextBox(false)} >
+          {showTextBox ? <input type="text" className="image-text" onChange={(e) => setText(e.target.value)} /> : <p>{text}</p>}
         </div>
         <div className="actions">         
           <div>
@@ -171,6 +172,7 @@ function App() {
                   active={index === selectedOptionIndex}
                   handleOptionIndex={() => setSelectedOptionIndex(index)}
                   showEdit={showEdit}
+                  setShowTextBox={setShowTextBox}
                 />
               );
             })}

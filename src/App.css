@@ -54,7 +54,7 @@
   background-color: transparent;
   font-size: 18px;
   padding: 5px 10px;
-  border: none;
+  /* border: none; */
 }
 
 .actions {
