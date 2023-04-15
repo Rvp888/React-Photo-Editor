@@ -4,8 +4,8 @@ import SidebarItem from "./components/SidebarItem";
 import Slider from "./components/Slider";
 import { toPng } from "html-to-image";
 import download from "downloadjs";
-import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
-import { storage } from "./firebaseConfig";
+import ReactCrop from "react-image-crop";
+
 
 const DEFAULT_OPTIONS = [
   {
@@ -88,6 +88,8 @@ function App() {
   const [imageURL, setImageURL] = useState(
     "https://media.istockphoto.com/id/1363905781/photo/fireweed-in-anchorage-alaska.jpg?b=1&s=170667a&w=0&k=20&c=wGddCuHzJCtQPo5Kk-qzhj-_Gq34lUo3hfJvvOhCGwM="
   );
+  const [crop, setCrop] = useState({ aspect: 9/16 });
+  const [completedCrop, setCompletedCrop] = useState(null);
 
   function handleSliderChange(e) {
     setOptions((prevOptions) => {
@@ -108,7 +110,7 @@ function App() {
       return `${option.property}(${option.value}${option.unit})`;
     });
 
-    return { filter: filters.join(" "), backgroundImage: `url(${imageURL})` };
+    return { filter: filters.join(" "),  };
   }
 
   const node = document.querySelector(".main-image");
@@ -148,7 +150,11 @@ function App() {
     <div className="App">
       <h1 className="app-title">Photo-Editor</h1>
       <div className="container">
-        <div className="main-image" style={getImageStyle()} />
+        <div className="main-image" style={getImageStyle()}>
+          <ReactCrop crop={crop} onChange={(c) => setCrop(c)} onComplete={(c) => setCompletedCrop(c)} >
+            <img src={imageURL} />
+          </ReactCrop>
+        </div>
         <div className="actions">         
           <div>
             <input type="file" className="file-input" onChange={handleUpload} />
