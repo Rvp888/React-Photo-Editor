@@ -45,7 +45,6 @@
   background-size: contain;
   background-repeat: no-repeat;
   position: relative;
-  /* filter:hue-rotate(150deg); */
 }
 
 .image-text-input {
