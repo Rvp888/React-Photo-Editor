@@ -144,7 +144,7 @@ function App() {
       <h1 className="app-title">Photo-Editor</h1>
       <div className="container">
         <div className="main-image" style={getImageStyle()}>
-          {showTextBox ? (
+          {showTextBox && (
             <input
               type="text"
               className="image-text-input"
@@ -152,7 +152,8 @@ function App() {
               onChange={(e) => setText(e.target.value)}
               onBlur={() => setShowTextBox(false)}
             />
-          ) : (
+          )} 
+          {text && (
             <p className="image-text">{text}</p>
           )}
         </div>

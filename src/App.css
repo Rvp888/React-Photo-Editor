@@ -48,16 +48,18 @@
 }
 
 .image-text-input {
+  width: 10%;
   position: absolute;
   top: 5%;
   left: 45%;
-  background-color: transparent;
+  background-color:azure;
   font-size: 18px;
   padding: 5px 10px;
-  /* border: none; */
+  /* border: 1px solid white; */
 }
 
 .image-text {
+  background-color:azure;
   position: absolute;
   top: 5%;
   left: 45%;
