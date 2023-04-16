@@ -4,8 +4,6 @@ import SidebarItem from "./components/SidebarItem";
 import Slider from "./components/Slider";
 import { toPng } from "html-to-image";
 import download from "downloadjs";
-import ReactCrop from "react-image-crop";
-
 
 
 const DEFAULT_OPTIONS = [
@@ -81,20 +79,19 @@ const DEFAULT_OPTIONS = [
   },
   {
     name: "Add text",
-  }
+  },
 ];
 
 function App() {
-  const [ selectedOptionIndex, setSelectedOptionIndex ] = useState(0);
-  const [ options, setOptions ] = useState(DEFAULT_OPTIONS);
+  const [selectedOptionIndex, setSelectedOptionIndex] = useState(0);
+  const [options, setOptions] = useState(DEFAULT_OPTIONS);
   const selectedOption = options[selectedOptionIndex];
-  const [ showEdit, setShowEdit ] = useState(false);
-  const [ imageURL, setImageURL ] = useState(
+  const [showEdit, setShowEdit] = useState(false);
+  const [imageURL, setImageURL] = useState(
     "https://media.istockphoto.com/id/1363905781/photo/fireweed-in-anchorage-alaska.jpg?b=1&s=170667a&w=0&k=20&c=wGddCuHzJCtQPo5Kk-qzhj-_Gq34lUo3hfJvvOhCGwM="
   );
-  const [ showTextBox, setShowTextBox ] = useState(false);
-  const [ text, setText ] = useState("");
-
+  const [showTextBox, setShowTextBox] = useState(false);
+  const [text, setText] = useState("");
 
   function handleSliderChange(e) {
     setOptions((prevOptions) => {
@@ -110,15 +107,14 @@ function App() {
     });
   }
 
-
   function getImageStyle() {
     const filters = options.map((option) => {
-      return `${option.property}(${option.value}${option.unit})`;
+      if(option.name !== "Add text"){
+        return `${option.property}(${option.value}${option.unit})`;
+      }
     });
-
-    return { filter: filters.join(" "), backgroundImage: `url(${imageURL})` };
+    return { filter: filters.join(" ") };
   }
-
 
   const node = document.querySelector(".main-image");
 
@@ -132,7 +128,6 @@ function App() {
       });
   }
 
-
   function handleUpload(e) {
     const { files } = e.target;
     if (files && files.length > 0) {
@@ -144,23 +139,37 @@ function App() {
     }
   }
 
- 
-
   return (
     <div className="App">
       <h1 className="app-title">Photo-Editor</h1>
       <div className="container">
-        <div className="main-image" style={getImageStyle()} >
-          {showTextBox ? <input type="text" className="image-text-input" onChange={(e) => setText(e.target.value)} onBlur={() => setShowTextBox(false)} /> : <p className="image-text">{text}</p>}
+        <div className="main-image" style={getImageStyle()}>
+          {showTextBox ? (
+            <input
+              type="text"
+              className="image-text-input"
+              placeholder="Add text..."
+              onChange={(e) => setText(e.target.value)}
+              onBlur={() => setShowTextBox(false)}
+            />
+          ) : (
+            <p className="image-text">{text}</p>
+          )}
         </div>
-        <div className="actions">         
+        <div className="actions">
           <div>
             <input type="file" className="file-input" onChange={handleUpload} />
           </div>
-          <button className="actions-btn actions-download-btn" onClick={downloadImage}>
+          <button
+            className="actions-btn actions-download-btn"
+            onClick={downloadImage}
+          >
             Download image
           </button>
-          <button className="actions-btn actions-edit-btn" onClick={() => setShowEdit(showEdit ? false : true)}>
+          <button
+            className="actions-btn actions-edit-btn"
+            onClick={() => setShowEdit(showEdit ? false : true)}
+          >
             Edit image
           </button>
           <div className="edit-box">
@@ -171,6 +180,8 @@ function App() {
                   name={option.name}
                   active={index === selectedOptionIndex}
                   handleOptionIndex={() => setSelectedOptionIndex(index)}
+                  index={index}
+                  setSelectedOptionIndex={setSelectedOptionIndex}
                   showEdit={showEdit}
                   setShowTextBox={setShowTextBox}
                 />
@@ -181,7 +192,7 @@ function App() {
         <Slider
           min={selectedOption.range?.min}
           max={selectedOption.range?.max}
-          value={selectedOption.value}
+          value={selectedOption.value || ""}
           handleChange={handleSliderChange}
         />
       </div>
