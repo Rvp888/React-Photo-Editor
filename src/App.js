@@ -113,7 +113,7 @@ function App() {
         return `${option.property}(${option.value}${option.unit})`;
       }
     });
-    return { filter: filters.join(" ") };
+    return { filter: filters.join(" "), backgroundImage: `url(${imageURL})` };
   }
 
   const node = document.querySelector(".main-image");
