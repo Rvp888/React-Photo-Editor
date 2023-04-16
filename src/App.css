@@ -29,7 +29,7 @@
   padding: 20px;
   background-color: #DADADA;
   display: grid;
-  grid-template-columns: 1fr auto auto;
+  grid-template-columns: 1fr auto;
   grid-template-rows: 1fr auto;
   grid-template-areas: 
     "image actions"
@@ -114,14 +114,13 @@
   cursor: pointer;
   border: none;
   outline: none;
-  border-radius: 0px;
   background-color: hsl(265, 100%, 86%);
   padding: 1rem;
   position: relative;
   transition: background-color 150ms;
 }
 
-.sidebar-item:hover, .sidebar-item:focus {
+.sidebar-item:hover {
   background-color: hsl(265, 100%, 76%);
 }
 
