@@ -180,7 +180,6 @@ function App() {
                   key={index}
                   name={option.name}
                   active={index === selectedOptionIndex}
-                  handleOptionIndex={() => setSelectedOptionIndex(index)}
                   index={index}
                   setSelectedOptionIndex={setSelectedOptionIndex}
                   showEdit={showEdit}
