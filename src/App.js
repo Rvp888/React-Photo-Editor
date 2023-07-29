@@ -141,7 +141,7 @@ function App() {
 
   return (
     <div className="App">
-      <h1 className="app-title">Photo-Editor</h1>
+      <h1 className="app-title">Photo Editor</h1>
       <div className="container">
         <div className="main-image" style={getImageStyle()}>
           {showTextBox && (
